@@ -106,12 +106,6 @@ public class OAuthSwiftHTTPRequest: NSObject, NSURLSessionDelegate {
                 delegate: self,
                 delegateQueue: NSOperationQueue.mainQueue())
             let task: NSURLSessionDataTask = self.session.dataTaskWithRequest(self.request!) { [unowned self] data, response, error -> Void in
-                #if os(iOS)
-                    #if !OAUTH_APP_EXTENSIONS
-                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    #endif
-                #endif
-                
                 guard error == nil else {
                     self.failureHandler?(error: error!)
                     return
@@ -146,12 +140,6 @@ public class OAuthSwiftHTTPRequest: NSObject, NSURLSessionDelegate {
                 self.successHandler?(data: self.responseData, response: self.response)
             }
             task.resume()
-
-            #if os(iOS)
-                #if !OAUTH_APP_EXTENSIONS
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-                #endif
-            #endif
         }
     }
 
