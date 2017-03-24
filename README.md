@@ -24,7 +24,7 @@ OAuthSwift is packaged as a Swift framework. Currently this is the simplest way 
 * Install Carthage (https://github.com/Carthage/Carthage)
 * Create Cartfile file
 ```
-github "OAuthSwift/OAuthSwift" ~> 1.0.0
+github "OAuthSwift/OAuthSwift" ~> 1.1.0
 ```
 * Run `carthage update`.
 * On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop OAuthSwift.framework from the Carthage/Build/iOS folder on disk.
@@ -37,7 +37,7 @@ github "OAuthSwift/OAuthSwift" ~> 1.0.0
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'OAuthSwift', '~> 1.0.0'
+pod 'OAuthSwift', '~> 1.1.0'
 ```
 ## How to
 ### Setting URL Schemes
@@ -89,8 +89,8 @@ oauthswift = OAuth1Swift(
 let handle = oauthswift.authorize(
     withCallbackURL: URL(string: "oauth-swift://oauth-callback/twitter")!,
     success: { credential, response, parameters in
-      print(credential.oauth_token)
-      print(credential.oauth_token_secret)
+      print(credential.oauthToken)
+      print(credential.oauthTokenSecret)
       print(parameters["user_id"])
     },
     failure: { error in
@@ -110,7 +110,7 @@ let handle = oauthswift.authorize(
     withCallbackURL: URL(string: "oauth-swift://oauth-callback/instagram")!,
     scope: "likes+comments", state:"INSTAGRAM",
     success: { credential, response, parameters in
-      print(credential.oauth_token)
+      print(credential.oauthToken)
     },
     failure: { error in
       print(error.localizedDescription)
@@ -139,7 +139,7 @@ func handle(_ url: NSURL) {
   ...
 ```
 and present the view (`present(viewController`, `performSegue(withIdentifier: `, ...)
-*You can extends `OAuthWebViewController` for a default implementation of view presentation and dismiss*
+*You can extend `OAuthWebViewController` for a default implementation of view presentation and dismiss*
 
 #### Use the SFSafariViewController (iOS9)
 A default implementation of `OAuthSwiftURLHandlerType` is provided using the `SFSafariViewController`, with automatic view dismiss.
@@ -152,8 +152,8 @@ Of course you can create your own class or customize the controller by setting t
 
 ```swift
 oauthswift.client.get("https://api.linkedin.com/v1/people/~",
-      success: { data, response in
-        let dataString = String(data: data, encoding: String.Encoding.utf8)
+      success: { response in
+        let dataString = response.string
         print(dataString)
       },
       failure: { error in
@@ -188,7 +188,7 @@ See more examples in the demo application: [ViewController.swift](/Demo/Common/V
 * [Zaim](https://dev.zaim.net/home/api/authorize)
 * [Tumblr](https://www.tumblr.com/docs/en/api/v2#auth)
 * [Slack](https://api.slack.com/docs/oauth)
-* [Uber](https://developer.uber.com/v1/auth/)
+* [Uber](https://developer.uber.com/docs/ride-requests/guides/authentication/introduction#oauth-20)
 * [Gitter](https://developer.gitter.im/docs/authentication)
 * [Facebook](https://developers.facebook.com/docs/facebook-login)
 * [Spotify](https://developer.spotify.com/web-api/authorization-guide/)
@@ -197,6 +197,7 @@ See more examples in the demo application: [ViewController.swift](/Demo/Common/V
 * [Goodreads](https://www.goodreads.com/api/documentation#oauth)
 * [Typetalk](http://developer.nulab-inc.com/docs/typetalk/auth)
 * [SoundCloud](https://developers.soundcloud.com/docs/api/guide#authentication)
+* [Digu](https://digu.io/developer/oauth)
 
 ## Images
 
