@@ -24,6 +24,7 @@ extension Dictionary {
         return joinedDictionary
     }
 
+    /*
     func filter(_ predicate: (_ key: Key, _ value: Value) -> Bool) -> Dictionary {
         var filteredDictionary = Dictionary()
 
@@ -35,6 +36,7 @@ extension Dictionary {
 
         return filteredDictionary
     }
+     */
 
     var urlEncodedQuery: String {
         var parts = [String]()

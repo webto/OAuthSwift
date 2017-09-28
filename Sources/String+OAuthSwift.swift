@@ -64,7 +64,7 @@ extension String {
     }
 
     var droppedLast: String {
-       return self.substring(to: self.index(before: self.endIndex))
+       return String(self[..<self.index(before: self.endIndex)])
     }
 
     mutating func dropLast() {
@@ -72,11 +72,11 @@ extension String {
     }
 
     func substring(to offset: String.IndexDistance) -> String {
-        return self.substring(to: self.index(self.startIndex, offsetBy: offset))
+        return String(self[..<self.index(self.startIndex, offsetBy: offset)])
     }
 
     func substring(from offset: String.IndexDistance) -> String {
-        return self.substring(from: self.index(self.startIndex, offsetBy: offset))
+        return String(self[self.index(self.startIndex, offsetBy: offset)...])
     }
 
 }
