@@ -28,7 +28,7 @@ extension String {
 
 		var string = self
 		if hasPrefix(elementSeparator) {
-			string = String(characters.dropFirst(1))
+			string = String(dropFirst(1))
 		}
 
         var parameters = [String: String]()
